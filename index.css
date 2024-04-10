@@ -1,0 +1,156 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+/* Body styles */
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+/* Body styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff; /* สีพื้นหลัง */
+  background-image: url('https://cdn.pixabay.com/photo/2018/10/04/11/37/woman-3723444_1280.jpg'); /* URL ของรูปภาพที่จะนำมาใช้เป็นพื้นหลัง */
+  background-size: cover; /* ทำให้ภาพพื้นหลังขยายเต็มพื้นที่ */
+  background-position: top; /* จัดตำแหน่งของภาพที่กำลังใช้งานให้อยู่ตรงกลาง */
+}
+
+/* Container styles */
+.container {
+  max-width: 1200px; /* กำหนดความกว้างของคอนเทนเนอร์ */
+  margin: 0 auto; /* คอนเทนเนอร์จะอยู่ตรงกลางของหน้าจอ */
+  padding: 20px; /* เพิ่มระยะห่างด้านในของคอนเทนเนอร์ */
+}
+
+/* Header styles */
+header {
+  text-align: center; /* จัดตำแหน่งข้อความให้อยู่ตรงกลาง */
+  margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่างของ Header */
+  font-size: 64px;
+  color: #ffffff;
+}
+
+header h2 a {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  color: #ffffff; /* สีข้อความ */
+}
+
+/* Navigation styles */
+nav ul {
+  list-style: none; /* ลบรูปแบบของลิสต์ */
+  text-align: center; /* จัดตำแหน่งเมนูให้อยู่ตรงกลาง */
+}
+
+nav ul li {
+  display: inline-block; /* แสดงเมนูเป็นแนวนอน */
+  margin-right: 20px; /* เพิ่มระยะห่างระหว่างเมนู */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* ไม่มีระยะห่างทางด้านขวาในเมนูสุดท้าย */
+}
+
+nav ul li a {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  font-size: 64px;
+  color: #ffffff; /* สีข้อความลิงค์ */
+}
+
+nav ul li p {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  color: #ffffff; /* สีข้อความลิงค์ */
+  font-size: 25px;
+}
+
+nav .btn {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  font-size: 30px;
+  color: #ffffff; /* สีข้อความลิงค์ */
+}
+
+
+
+/* Container styles */
+.container {
+  max-width: 1200px; /* กำหนดความกว้างของคอนเทนเนอร์ */
+  margin: 0 auto; /* คอนเทนเนอร์จะอยู่ตรงกลางของหน้าจอ */
+  padding: 20px; /* เพิ่มระยะห่างด้านในของคอนเทนเนอร์ */
+}
+
+/* Header styles */
+header {
+  text-align: center; /* จัดตำแหน่งข้อความให้อยู่ตรงกลาง */
+  margin-bottom: 20px; /* เพิ่มระยะห่างด้านล่างของ Header */
+  font-size: 64px;
+  color: #ffffff;
+}
+
+header h2 a {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  color: #ffffff; /* สีข้อความ */
+}
+
+/* Navigation styles */
+nav ul {
+  list-style: none; /* ลบรูปแบบของลิสต์ */
+  text-align: center; /* จัดตำแหน่งเมนูให้อยู่ตรงกลาง */
+}
+
+nav ul li {
+  display: inline-block; /* แสดงเมนูเป็นแนวนอน */
+  margin-right: 20px; /* เพิ่มระยะห่างระหว่างเมนู */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* ไม่มีระยะห่างทางด้านขวาในเมนูสุดท้าย */
+}
+
+nav ul li a {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  font-size: 64px;
+  color: #ffffff; /* สีข้อความลิงค์ */
+}
+
+nav ul li p {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  color: #ffffff; /* สีข้อความลิงค์ */
+  font-size: 25px;
+  margin-top: 40px;
+}
+
+nav .btn {
+  text-decoration: none; /* ลบขีดเส้นใต้ข้อความลิงค์ */
+  font-size: 30px;
+  color: #ffffff; /* สีข้อความลิงค์ */
+  background-color: rgba(255, 255, 255, 0.3);
+  display: inline-block; /* แสดงเป็นบล็อก */
+  padding: 10px 20px; /* เพิ่มช่องว่างรอบข้อความ */
+  border-color: #726a6a
+  transition: border-color 0.3s ease, margin-top 0.3s ease; /* เพิ่มการเปลี่ยนสีเส้นขอบและตำแหน่งเมื่อ hover */
+  animation: pulse 1s infinite alternate;
+  margin-top: 150px; /* ขยับลิงค์ลงมา 10px เพื่อชิดกับข้อความอื่น */
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* :hover หมายถึงการตกแต่งเมื่อนำเมาส์ชี้ */
+nav .btn:hover {
+  background-color: rgba(255, 255, 255, 0.3); /* เพิ่มพื้นหลังสีสีขาวโปร่งเมื่อ hover */
+  border-color: #837575; /* เปลี่ยนสีเส้นขอบเป็นสีขาวเมื่อ hover */
+}
