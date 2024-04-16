@@ -10,25 +10,68 @@
         <input type="checkbox" id="chk" aria-hidden="true">
 
         <div class="signup">
-            <form>
+            <form id="signupForm">
                 <label for="chk" aria-hidden="true">สมัครสมาชิก</label>
                 <input type="text" name="txt" placeholder="User name" required="">
                 <input type="email" name="email" placeholder="Email" required="">
                 <input type="password" name="pswd" placeholder="Password" required="">
-                <button>สมัครสมาชิก</button>
+                <button type="submit">สมัครสมาชิก</button>
             </form>
         </div>
 
         <div class="login">
-            <form>
+            <form id="loginForm">
                 <label for="chk" aria-hidden="true">เข้าสู่ระบบ</label>
                 <input type="email" name="email" placeholder="Email" required="">
                 <input type="password" name="pswd" placeholder="Password" required="">
-                <button>เข้าสู่ระบบ</button>
+                <button type="submit">เข้าสู่ระบบ</button>
             </form>
         </div>
     </div>
 
-    <!-- <script src="#"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-database.js"></script>    
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        databaseURL: "YOUR_DATABASE_URL",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+
+      const signUpForm = document.getElementById('signupForm');
+      const loginForm = document.getElementById('loginForm');
+
+      signUpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const userName = signUpForm.querySelector('input[name="txt"]').value;
+        const email = signUpForm.querySelector('input[name="email"]').value;
+        const password = signUpForm.querySelector('input[name="pswd"]').value;
+
+        database.ref('users').push({
+          username: userName,
+          email: email,
+          password: password
+        });
+
+        signUpForm.reset();
+      });
+
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const email = loginForm.querySelector('input[name="email"]').value;
+        const password = loginForm.querySelector('input[name="pswd"]').value;
+
+        // เขียนโค้ดสำหรับการเข้าสู่ระบบที่นี่
+      });
+    </script>
 </body>
 </html>
