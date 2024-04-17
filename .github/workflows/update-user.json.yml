@@ -19,6 +19,8 @@ jobs:
         cat user.json > ${{ github.workspace }}/user.json
       
     - name: Sign up and Update User
+      env:
+        TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       run: |
         # ดำเนินการสมัครสมาชิกและอัปเดตข้อมูลใน user.json ด้วยเครื่องมือที่คุณใช้
 
