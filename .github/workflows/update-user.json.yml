@@ -20,7 +20,7 @@ jobs:
       
     - name: Sign up and Update User
       env:
-        TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN ห}}
       run: |
         # ดำเนินการสมัครสมาชิกและอัปเดตข้อมูลใน user.json ด้วยเครื่องมือที่คุณใช้
 
