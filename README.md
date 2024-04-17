@@ -16,8 +16,8 @@
 
 1. ดาวน์โหลดหรือ clone โปรเจกต์จาก GitHub repository
 2. เปิดไฟล์ index.html ด้วยเว็บเบราว์เซอร์ของคุณ
-3.หรือลิ้งค์ >>>  https://z4my13.github.io/9011576-wongnok-recipes
-4. กดเข้าสู่ระบบ และกรอก EmailกับPassword ด้วย todsop@todsop.com   todsop
+3. หรือลิ้งค์ >>>  https://z4my13.github.io/9011576-wongnok-recipes
+4. กดเข้าสู่ระบบ และกรอก EmailกับPassword ด้วย todsop@todsop.com  และ todsop
 
 ## เครื่องมือและทรัพยากรที่ใช้
 
