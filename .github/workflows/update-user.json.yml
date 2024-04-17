@@ -39,3 +39,6 @@ jobs:
         git add user.json
         git commit -m "Update user.json with new user data"
         git push origin main
+
+    - name: Update user.json
+      run: node updateUser.js
