@@ -13,13 +13,14 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         var user = data.find(user => user.email === email && user.password === password);
         if (user) {
             alert('เข้าสู่ระบบสำเร็จ');
-            // ในที่นี้คุณสามารถเปลี่ยนหน้าหลังจากเข้าสู่ระบบสำเร็จได้
+            window.location.href = 'recipe.html'; // เปิดหน้าไฟล์ recipe.html หลังจากเข้าสู่ระบบสำเร็จ
         } else {
             alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
         }
     })
     .catch(error => console.error('เกิดข้อผิดพลาด:', error));
 });
+
 document.getElementById('signupForm').addEventListener('submit', function(event) {
     event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
 
@@ -47,7 +48,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
             // เพิ่มข้อมูลผู้ใช้ใหม่ลงใน JSON
             data.push(newUser);
             // บันทึกข้อมูลใหม่ลงในไฟล์ JSON
-            saveData(data);
+            saveData(data); // เรียกใช้ฟังก์ชัน saveData เพื่อบันทึกข้อมูล
             alert('สมัครสมาชิกสำเร็จ');
         }
     })
