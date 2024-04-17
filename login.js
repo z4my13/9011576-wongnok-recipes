@@ -1,49 +1,66 @@
-// Firebase Authentication
-const auth = firebase.auth();
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
 
-// Firebase Realtime Database
-const database = firebase.database();
+    // รับค่าอีเมลและรหัสผ่านจากฟอร์ม
+    var email = this.email.value;
+    var password = this.pswd.value;
 
-// สร้างฟังก์ชั่นสำหรับการลงทะเบียนผู้ใช้
-function signUpUser(email, password, username) {
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // บันทึกข้อมูลผู้ใช้ลงใน Firebase Realtime Database
-            const userId = userCredential.user.uid;
-            database.ref('users/' + userId).set({
+    // โหลดข้อมูลผู้ใช้จาก user.json
+    fetch('user.json')
+    .then(response => response.json())
+    .then(data => {
+        // ตรวจสอบว่ามีข้อมูลผู้ใช้ที่ตรงกับที่ผู้ใช้ป้อนหรือไม่
+        var user = data.find(user => user.email === email && user.password === password);
+        if (user) {
+            alert('เข้าสู่ระบบสำเร็จ');
+            // ในที่นี้คุณสามารถเปลี่ยนหน้าหลังจากเข้าสู่ระบบสำเร็จได้
+        } else {
+            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+        }
+    })
+    .catch(error => console.error('เกิดข้อผิดพลาด:', error));
+});
+document.getElementById('signupForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
+
+    // รับค่าจากฟอร์ม
+    var username = this.txt.value;
+    var email = this.email.value;
+    var password = this.pswd.value;
+
+    // โหลดข้อมูลผู้ใช้จาก user.json
+    fetch('user.json')
+    .then(response => response.json())
+    .then(data => {
+        // ตรวจสอบว่ามีอีเมลซ้ำหรือไม่
+        var existingUser = data.find(user => user.email === email);
+        if (existingUser) {
+            alert('อีเมลนี้มีอยู่แล้วในระบบ');
+        } else {
+            // สร้างข้อมูลผู้ใช้ใหม่
+            var newUser = {
+                id: data.length + 1,
                 username: username,
-                email: email
-            });
-            console.log("User signed up successfully:", userCredential.user);
-        })
-        .catch((error) => {
-            console.error("Error signing up:", error);
-        });
-}
-
-// สร้างฟังก์ชั่นสำหรับการเข้าสู่ระบบ
-function signInUser(email, password) {
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            console.log("User signed in successfully:", userCredential.user);
-        })
-        .catch((error) => {
-            console.error("Error signing in:", error);
-        });
-}
-
-// เรียกใช้งานฟังก์ชั่นเมื่อมีการส่งแบบฟอร์ม
-signUpForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const userName = signUpForm.querySelector('input[name="txt"]').value;
-    const email = signUpForm.querySelector('input[name="email"]').value;
-    const password = signUpForm.querySelector('input[name="pswd"]').value;
-    signUpUser(email, password, userName);
+                email: email,
+                password: password
+            };
+            // เพิ่มข้อมูลผู้ใช้ใหม่ลงใน JSON
+            data.push(newUser);
+            // บันทึกข้อมูลใหม่ลงในไฟล์ JSON
+            saveData(data);
+            alert('สมัครสมาชิกสำเร็จ');
+        }
+    })
+    .catch(error => console.error('เกิดข้อผิดพลาด:', error));
 });
 
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = loginForm.querySelector('input[name="email"]').value;
-    const password = loginForm.querySelector('input[name="pswd"]').value;
-    signInUser(email, password);
-});
+// ฟังก์ชันบันทึกข้อมูลใหม่ลงในไฟล์ JSON
+function saveData(data) {
+    fetch('user.json', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+}
