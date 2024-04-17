@@ -13,7 +13,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        repository: z4my13/9011576-wongnok-recipes  # เปลี่ยนเป็น URL ของ repository ที่ต้องการ
+        token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+
       
     - name: Read user.json
       id: read_user_json
