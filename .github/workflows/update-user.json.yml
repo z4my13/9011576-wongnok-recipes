@@ -1,34 +1,30 @@
-name: Update user.json
+name: Sign Up and Update User
 
 on:
   push:
     branches:
-      - main  # หรือแทนที่ "main" ด้วยชื่อ branch ที่คุณต้องการทำงาน Workflow
+      - main
 
 jobs:
-  update-user-json:
+  sign-up-and-update-user:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Update user.json
-      uses: restackio/update-json-file-action@v2.1
-      with:
-        file: user.json
-        fields: |
-          [
-            {
-              "id": 1,
-              "username": "abcd123456",
-              "email": "abcd123456@test.com",
-              "password": "123456"
-            },
-            {
-              "id": 2,
-              "username": "wxyz123456",
-              "email": "wxyz123456@test.com",
-              "password": "123456"
-            }
-          ]
+    - name: Read user.json
+      id: read_user_json
+      run: |
+        cat user.json > ${{ github.workspace }}/user.json
+      
+    - name: Sign up and Update User
+      run: |
+        # ดำเนินการสมัครสมาชิกและอัปเดตข้อมูลใน user.json ด้วยเครื่องมือที่คุณใช้
+
+        # Commit และ Push ไฟล์ user.json กลับไปยัง repository
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git add user.json
+        git commit -m "Update user.json with new user data"
+        git push origin main
