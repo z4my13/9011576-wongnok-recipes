@@ -1,68 +1,67 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
+document.addEventListener("DOMContentLoaded", function() {
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // หยุดการส่งฟอร์มเพื่อป้องกันการรีเฟรชหน้าเว็บ
 
-    // รับค่าอีเมลและรหัสผ่านจากฟอร์ม
-    var email = this.email.value;
-    var password = this.pswd.value;
+        const email = loginForm.email.value;
+        const password = loginForm.pswd.value;
 
-    // โหลดข้อมูลผู้ใช้จาก user.json
-    fetch('user.json')
-    .then(response => response.json())
-    .then(data => {
-        // ตรวจสอบว่ามีข้อมูลผู้ใช้ที่ตรงกับที่ผู้ใช้ป้อนหรือไม่
-        var user = data.find(user => user.email === email && user.password === password);
-        if (user) {
-            alert('เข้าสู่ระบบสำเร็จ');
-            window.location.href = 'recipe.html'; // เปิดหน้าไฟล์ recipe.html หลังจากเข้าสู่ระบบสำเร็จ
-        } else {
-            alert('อีเมลหรือรหัสผ่านไม่ถูกต้อง');
-        }
-    })
-    .catch(error => console.error('เกิดข้อผิดพลาด:', error));
-});
-
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // ป้องกันการส่งฟอร์มแบบปกติ
-
-    // รับค่าจากฟอร์ม
-    var username = this.txt.value;
-    var email = this.email.value;
-    var password = this.pswd.value;
-
-    // โหลดข้อมูลผู้ใช้จาก user.json
-    fetch('user.json')
-    .then(response => response.json())
-    .then(data => {
-        // ตรวจสอบว่ามีอีเมลซ้ำหรือไม่
-        var existingUser = data.find(user => user.email === email);
-        if (existingUser) {
-            alert('อีเมลนี้มีอยู่แล้วในระบบ');
-        } else {
-            // สร้างข้อมูลผู้ใช้ใหม่
-            var newUser = {
-                id: data.length + 1,
-                username: username,
-                email: email,
-                password: password
-            };
-            // เพิ่มข้อมูลผู้ใช้ใหม่ลงใน JSON
-            data.push(newUser);
-            // บันทึกข้อมูลใหม่ลงในไฟล์ JSON
-            saveData(data); // เรียกใช้ฟังก์ชัน saveData เพื่อบันทึกข้อมูล
-            alert('สมัครสมาชิกสำเร็จ');
-            window.location.href = 'login.html'; // หลังจากสมัครสมาชิกสำเร็จให้เปลี่ยนไปหน้า login.html
-        }
-    })
-    .catch(error => console.error('เกิดข้อผิดพลาด:', error));
-});
-
-// ฟังก์ชันบันทึกข้อมูลใหม่ลงในไฟล์ JSON
-function saveData(data) {
-    fetch('user.json', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
+        // เรียกใช้ฟังก์ชันสำหรับตรวจสอบข้อมูลผู้ใช้
+        authenticateUser(email, password);
     });
-}
+
+    signupForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // หยุดการส่งฟอร์มเพื่อป้องกันการรีเฟรชหน้าเว็บ
+
+        const username = signupForm.txt.value;
+        const email = signupForm.email.value;
+        const password = signupForm.pswd.value;
+
+        // เรียกใช้ฟังก์ชันสำหรับตรวจสอบข้อมูลผู้ใช้
+        checkDuplicateEmail(email, username, password);
+    });
+
+    function authenticateUser(email, password) {
+        // อ่านข้อมูลจากไฟล์ user.json
+        fetch("user.json")
+            .then(response => response.json())
+            .then(data => {
+                // ตรวจสอบว่ามีข้อมูลผู้ใช้ใน user.json หรือไม่
+                const user = data.find(user => user.email === email && user.password === password);
+                if (user) {
+                    alert("เข้าสู่ระบบสำเร็จ!");
+                    // ตรวจสอบเส้นทางสำหรับการเข้าสู่ระบบสำเร็จ
+                    window.location.href = "recipe.html"; // เปลี่ยนเส้นทางไปยังหน้า success.html
+                } else {
+                    checkDuplicateEmail(email);
+                }
+            })
+            .catch(error => {
+                console.error("เกิดข้อผิดพลาดในการอ่านข้อมูล:", error);
+                alert("เกิดข้อผิดพลาดในการเข้าสู่ระบบ");
+            });
+    }
+
+    function checkDuplicateEmail(email, username, password) {
+        // อ่านข้อมูลจากไฟล์ user.json
+        fetch("user.json")
+            .then(response => response.json())
+            .then(data => {
+                // ตรวจสอบว่ามีอีเมลที่ซ้ำกันใน user.json หรือไม่
+                const emailExists = data.some(user => user.email === email);
+                if (emailExists) {
+                    alert("มีอีเมลนี้อยู่ในระบบแล้ว");
+                } else {
+                    // ถ้าไม่มีอีเมลที่ซ้ำกัน สามารถทำการสมัครได้
+                    alert("สมัครสมาชิกสำเร็จ!");
+                    // สามารถทำการเพิ่มข้อมูลผู้ใช้ในฐานข้อมูลได้ต่อไปที่นี่
+                }
+            })
+            .catch(error => {
+                console.error("เกิดข้อผิดพลาดในการอ่านข้อมูล:", error);
+                alert("เกิดข้อผิดพลาดในการตรวจสอบอีเมล");
+            });
+    }
+});
