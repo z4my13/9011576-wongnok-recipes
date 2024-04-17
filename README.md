@@ -1,6 +1,6 @@
 # Wongnhok-Recipes
 
-![Wongnhok-Recipes](https://img2.pic.in.th/pic/woman-3723444_1280.th.jpeg)
+![Wongnhok-Recipes](https://img2.pic.in.th/pic/woman-3723444_1280.md.jpeg)
 
 เว็บไซด์เกี่ยวกับการทำอาหาร และแจกสูตรอาหารฉบับง่าย เหมาะสำหรับผู้ที่อยู่คอนโดฯ และบ้านพัก
 
