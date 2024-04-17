@@ -50,6 +50,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
             // บันทึกข้อมูลใหม่ลงในไฟล์ JSON
             saveData(data); // เรียกใช้ฟังก์ชัน saveData เพื่อบันทึกข้อมูล
             alert('สมัครสมาชิกสำเร็จ');
+            window.location.href = 'login.html'; // หลังจากสมัครสมาชิกสำเร็จให้เปลี่ยนไปหน้า login.html
         }
     })
     .catch(error => console.error('เกิดข้อผิดพลาด:', error));
