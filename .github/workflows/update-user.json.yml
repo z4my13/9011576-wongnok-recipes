@@ -25,8 +25,8 @@ jobs:
         # ดำเนินการสมัครสมาชิกและอัปเดตข้อมูลใน user.json ด้วยเครื่องมือที่คุณใช้
 
         # Commit และ Push ไฟล์ user.json กลับไปยัง repository
-        git config --global user.email "you@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "z4my13@gmail.com"
+        git config --global user.name "z4my13"
         git add user.json
         git commit -m "Update user.json with new user data"
         git push origin main
